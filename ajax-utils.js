@@ -1,0 +1,38 @@
+// Created by user on 4/28/2026, 11:23:28 PM
+// Last modified by user on 4/28/2026, 11:30:36 PM
+(function (global) {
+
+  var ajaxUtils = {};
+
+  function getRequestObject() {
+    if (window.XMLHttpRequest) {
+      return new XMLHttpRequest();
+    } else {
+      return new ActiveXObject("Microsoft.XMLHTTP");
+    }
+  }
+
+  ajaxUtils.sendGetRequest = function (requestUrl, responseHandler, isJsonResponse) {
+    var request = getRequestObject();
+
+    request.onreadystatechange = function () {
+      if (request.readyState === 4 && request.status === 200) {
+        if (isJsonResponse === undefined) {
+          isJsonResponse = true;
+        }
+
+        if (isJsonResponse) {
+          responseHandler(JSON.parse(request.responseText));
+        } else {
+          responseHandler(request.responseText);
+        }
+      }
+    };
+
+    request.open("GET", requestUrl, true);
+    request.send(null);
+  };
+
+  global.$ajaxUtils = ajaxUtils;
+
+})(window);
