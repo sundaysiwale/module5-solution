@@ -1,5 +1,5 @@
 // Created by user on 4/28/2026, 11:20:05 PM
-// Last modified by user on 4/29/2026, 12:03:16 AM
+// Last modified by user on 4/29/2026, 12:38:57 AM
 (function (global) {
 
   var dc = {};
@@ -79,7 +79,7 @@
   // INITIAL LOAD
  
   document.addEventListener("DOMContentLoaded", function () {
-    dc.loadHomePage();
+    $dc.loadHomePage();
   });
 
   // Export to global
